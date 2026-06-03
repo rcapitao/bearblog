@@ -8,6 +8,15 @@ Este repositório serve como catálogo e referência dos plugins instalados, fac
 
 Os plugins do Bear Blog estendem funcionalidades do blog via snippets de CSS, JavaScript e HTML inseridos nos campos de personalização. Aqui mantenho registro dos plugins de terceiros que utilizo, com links para as fontes originais e notas sobre configuração.
 
+## Plugins
+
+### dashboard-notes.js
+```
+<script src="https://cdn.jsdelivr.net/gh/rcapitao/bear-plugins/dashboarde-notes.js"></script>
+```
+
+### x
+
 ## Instalação
 
 No Bear Blog, os plugins são adicionados via snippets de código nos campos de personalização do painel:
@@ -22,6 +31,10 @@ No Bear Blog, os plugins são adicionados via snippets de código nos campos de 
 Notas e parâmetros personalizados de cada plugin:
 
 - **_(plugin)_**: _(parâmetros, snippets de CSS/JS, observações)_
+
+```
+<script src="https://cdn.jsdelivr.net/gh/robertbirming/bear-plugins/archive-toolkit.js"></script>
+```
 
 ## Créditos
 
