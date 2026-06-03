@@ -10,12 +10,16 @@ Os plugins do Bear Blog estendem funcionalidades do blog via snippets de CSS, Ja
 
 ## Plugins
 
-### dashboard-notes.js
+### Dashboard
+
+#### dashboard-notes.js
 ```
 <script src="https://cdn.jsdelivr.net/gh/rcapitao/bear-plugins/dashboarde-notes.js"></script>
 ```
 
-### x
+### Footnote
+
+#### xxx
 
 ## Instalação
 
