@@ -21,6 +21,7 @@ No Bear Blog, os plugins são adicionados via snippets de código nos campos de 
 ```
 <script src="https://cdn.jsdelivr.net/gh/rcapitao/bear-plugins/dashboard-notes.js"></script>
 ```
+[Código](https://github.com/rcapitao/bear-plugins/blob/033ca22101bfd78d10d51912627ae23d68d645c3/dashboard-notes.js)
 
 ### Footnote
 
