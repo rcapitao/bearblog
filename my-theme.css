@@ -1,0 +1,417 @@
+/*
+* Bearming — a personal Bear theme
+* Version 5.5.0 | 2026-05-26
+* Robert Birming | robertbirming.com
+*/
+
+/* Palette: Bear */
+:root {
+  color-scheme: light dark;
+
+  /* Layout */
+  --page-width: 720px;
+  --line-height: 1.6;
+  --space-block: 1.8rem;
+  --radius: 3px;
+
+  /* Typography */
+  --font-heading: Verdana, sans-serif;
+  --font-body: Verdana, sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --font-size: 1em;
+  --font-small: calc(var(--font-size) * 0.875);
+
+  /* Light */
+  --bg: #ffffff;
+  --text: #444444;
+  --link: #3273dc;
+  --visited: #8b6fcb;
+  --accent: var(--link);
+  --muted: color-mix(in srgb, var(--accent) 15%, color-mix(in srgb, var(--text) 65%, var(--bg)));
+  --surface: color-mix(in srgb, var(--accent) 7%, var(--bg));
+  --border: color-mix(in srgb, var(--accent) 20%, var(--bg));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+
+    /* Dark */
+    --bg: #01242e;
+    --text: #dddddd;
+    --link: #8cc2dd;
+    --visited: #8b6fcb;
+    --surface: color-mix(in srgb, var(--accent) 13%, var(--bg));
+    --border: color-mix(in srgb, var(--accent) 30%, var(--bg));
+    --muted: color-mix(in srgb, var(--accent) 10%, color-mix(in srgb, var(--text) 80%, var(--bg)));
+  }
+}
+
+/* =========================
+   Core styles
+   Handle with bear care
+   ========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--bg);
+}
+
+body {
+  margin-inline: auto;
+  padding: 1.25rem;
+  max-width: var(--page-width);
+  font-family: var(--font-body);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  overflow-wrap: break-word;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+p {
+  margin-block: 1.2em;
+}
+
+h1, h2, h3, h4 {
+  margin-block: var(--space-block) 0.5em;
+  line-height: 1.3;
+  font-family: var(--font-heading);
+}
+
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.3rem; }
+h4 { font-size: 1.15rem; }
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+main a:visited {
+  color: var(--visited);
+}
+
+@media (hover: hover) {
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 0.12em;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+
+ul, ol {
+  padding-inline-start: 1.5rem;
+}
+
+li,
+li > ul,
+li > ol {
+  margin-block: 0.2em;
+}
+
+hr,
+img,
+video,
+pre,
+blockquote {
+  margin-block: var(--space-block);
+}
+
+hr {
+  border: none;
+  border-block-start: 1px solid var(--border);
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+pre {
+  padding-block: 1rem;
+  padding-inline: 1.2rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: var(--font-small);
+  line-height: 1.5;
+  tab-size: 2;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+code {
+  padding-block: 0.15em;
+  padding-inline: 0.3em;
+  font-family: var(--font-mono);
+  font-size: var(--font-small);
+  overflow-wrap: anywhere;
+  background-color: var(--surface);
+  border-radius: var(--radius);
+}
+
+pre code {
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  font-size: inherit;
+  overflow-wrap: normal;
+}
+
+mark {
+  padding-inline: 0.15em;
+  color: var(--bg);
+  background-color: color-mix(in srgb, var(--accent) 60%, var(--text));
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-small);
+}
+
+th,
+td {
+  padding-block: 0.5em;
+  padding-inline: 0.75em;
+  border: 1px solid var(--border);
+  text-align: start;
+}
+
+th {
+  background-color: var(--surface);
+  font-weight: 700;
+}
+
+time {
+  font-family: var(--font-mono);
+  font-size: var(--font-small);
+  font-style: normal;
+  color: var(--muted);
+}
+
+header nav p,
+main > :first-child,
+.post main > h1 + p {
+  margin-block-start: 0;
+}
+
+.post main > h1 {
+  margin-block-end: 0;
+}
+
+/* =========================
+   Style options
+   robertbirming.com/bearming/styles
+   ========================= */
+
+/* Links: Main content underlining */
+main p a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.05em;
+}
+
+/* Blockquote: Default */
+blockquote {
+  margin-inline: 0;
+  padding-block: 0.1em;
+  padding-inline-start: 1.2em;
+  font-style: italic;
+  color: var(--muted);
+  border-inline-start: 3px solid var(--accent);
+}
+
+blockquote p { margin-block: 0; }
+
+/* Header: Horizontal */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.1rem 1rem;
+  margin-block: 0 var(--space-block);
+}
+
+header a.title {
+  display: inline-block;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.title h1 {
+  margin-block: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+header nav p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-block: 0;
+  font-size: var(--font-small);
+  font-weight: 500;
+}
+
+header nav a {
+  margin-inline-end: 0;
+}
+
+/* Blog list: Default */
+.blog-posts {
+  margin-block-end: var(--space-block);
+  padding: 0;
+  list-style: none;
+}
+
+.blog-posts li {
+  display: flex;
+  align-items: baseline;
+}
+
+.blog-posts li a {
+  margin-inline-end: auto;
+}
+
+.blog-posts li span {
+  flex: 0 0 7.6rem;
+  font-size: var(--font-small);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Tags: Default */
+p.tags {
+  margin-block: var(--space-block);
+}
+
+p.tags a,
+p.tags a:visited {
+  margin-inline-end: 0.5em;
+  font-size: var(--font-small);
+  color: var(--muted);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  p.tags a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 0.05em;
+  }
+}
+
+/* Upvote button: Default */
+#upvote-form .upvote-button {
+  cursor: pointer;
+}
+
+#upvote-form .upvote-count {
+  margin-top: 0;
+  font-size: 1em;
+}
+
+/* Footer: Default */
+footer {
+  margin-block-start: calc(var(--space-block) * 1.2);
+  text-align: center;
+  color: var(--muted);
+}
+
+footer p {
+  margin-block: 0.5em;
+}
+
+#footer-directive a {
+  margin-inline: 0.2em;
+}
+
+/* =========================
+   Optional add-ons
+   robertbirming.com/bearming/add-ons
+   ========================= */
+
+/* Footnote styles | robertbirming.com */
+.footnotes {
+  margin-block-start: var(--space-block);
+  padding-block-start: 1.2rem;
+  font-size: var(--font-small);
+  color: var(--muted);
+  border-block-start: 1px solid var(--border);
+}
+
+.footnotes ol {
+  padding-inline-start: 1.5rem;
+}
+
+.footnotes li {
+  margin-block-end: 0.4em;
+}
+
+.footnotes p {
+  display: inline;
+  margin: 0;
+}
+
+.footnote-ref a {
+  text-decoration: none;
+  font-feature-settings: "tnum";
+}
+
+.footnote {
+  margin-inline-start: 0.2em;
+  text-decoration: none;
+}
+
+/* Figure caption | robertbirming.com */
+figure {
+  margin-inline: 0;
+  margin-block: var(--space-block);
+}
+
+figure > p {
+  margin-block: 0;
+}
+
+figure img,
+figure video {
+  margin-block: 0;
+}
+
+figcaption {
+  margin-block-start: 0.5em;
+  font-size: var(--font-small);
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Blockquote: Citations | robertbirming.com */
+blockquote cite {
+  display: block;
+  margin-block-start: 0.7em;
+  font-size: var(--font-small);
+  font-style: normal;
+}
+
+blockquote > :first-child { margin-block-start: 0; }
+blockquote > :last-child { margin-block-end: 0; }
