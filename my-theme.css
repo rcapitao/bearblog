@@ -992,7 +992,7 @@ span.curve {
 }
 
 /* External link marker | robertbirming.com */
-main a[href^="http"]:not([href*="YOUR_DOMAIN"])::after {
+main a[href^="http"]:not([href*="rcapitao.com"])::after {
   content: "\00a0↗\FE0E";
   font-size: 0.7em;
   text-decoration: none;
@@ -1002,7 +1002,7 @@ main a[href^="http"]:not([href*="YOUR_DOMAIN"])::after {
   color: var(--muted);
 }
 
-main a[href^="http"]:not([href*="YOUR_DOMAIN"]):has(img)::after {
+main a[href^="http"]:not([href*="rcapitao.com"]):has(img)::after {
   content: none;
 }
 
@@ -1327,5 +1327,79 @@ main a[href^="http"]:not([href*="YOUR_DOMAIN"]):has(img)::after {
 }
 
 .frame p {
+  margin: 0;
+}
+
+/* Bearlytics | robertbirming.com */
+.bl-widget {
+  max-width: 28rem;
+  margin-block: var(--space-block);
+  padding-block: 1.25rem 1rem;
+  padding-inline: 1.5rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.bl-label {
+  margin-block: 0 0.75rem;
+  font-size: var(--font-small);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.bl-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.bl-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-block: 0.25rem;
+}
+
+.bl-divider {
+  margin-block: 0.6rem;
+  border-block-start: 1px solid var(--border);
+}
+
+.bl-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.bl-stat-label,
+.bl-stat-value {
+  font-size: var(--font-small);
+}
+
+.bl-stat-label {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.bl-stat-value {
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+.bl-widget a.bl-stat-link,
+.bl-widget a.bl-stat-link:visited {
+  color: var(--muted);l
+  text-decoration: none;
+}
+
+.bl-loading,
+.bl-empty,
+.bl-error {
+  font-size: var(--font-small);
+  color: var(--muted);
   margin: 0;
 }
