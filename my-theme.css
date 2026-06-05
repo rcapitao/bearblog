@@ -4,28 +4,30 @@
 * Robert Birming | robertbirming.com
 */
 
-/* Palette: Bear */
+/* Palette: Amber */
+@import url('https://fonts.bunny.net/css?family=bricolage-grotesque:600,700,800|dm-sans:400,400i,500&display=swap');
+
 :root {
   color-scheme: light dark;
 
   /* Layout */
-  --page-width: 720px;
-  --line-height: 1.6;
+  --page-width: 65ch;
+  --line-height: 1.65;
   --space-block: 1.8rem;
-  --radius: 3px;
+  --radius: 5px;
 
   /* Typography */
-  --font-heading: Verdana, sans-serif;
-  --font-body: Verdana, sans-serif;
+  --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
-  --font-size: 1em;
+  --font-size: 1.0625rem;
   --font-small: calc(var(--font-size) * 0.875);
 
   /* Light */
-  --bg: #ffffff;
-  --text: #444444;
-  --link: #3273dc;
-  --visited: #8b6fcb;
+  --bg: #f5f1eb;
+  --text: #2a1e0e;
+  --link: #a0651a;
+  --visited: #7a5540;
   --accent: var(--link);
   --muted: color-mix(in srgb, var(--accent) 15%, color-mix(in srgb, var(--text) 65%, var(--bg)));
   --surface: color-mix(in srgb, var(--accent) 7%, var(--bg));
@@ -36,10 +38,10 @@
   :root {
 
     /* Dark */
-    --bg: #01242e;
-    --text: #dddddd;
-    --link: #8cc2dd;
-    --visited: #8b6fcb;
+    --bg: #1c1710;
+    --text: #d2cdbf;
+    --link: #e8a83c;
+    --visited: #c49070;
     --surface: color-mix(in srgb, var(--accent) 13%, var(--bg));
     --border: color-mix(in srgb, var(--accent) 30%, var(--bg));
     --muted: color-mix(in srgb, var(--accent) 10%, color-mix(in srgb, var(--text) 80%, var(--bg)));
@@ -84,10 +86,10 @@ h1, h2, h3, h4 {
   font-family: var(--font-heading);
 }
 
-h1 { font-size: 1.8rem; }
+h1 { font-size: 1.7rem; }
 h2 { font-size: 1.5rem; }
 h3 { font-size: 1.3rem; }
-h4 { font-size: 1.15rem; }
+h4 { font-size: 1.1rem; }
 
 a {
   color: var(--link);
@@ -221,6 +223,18 @@ main > :first-child,
    robertbirming.com/bearming/styles
    ========================= */
 
+/* Mostrar título blog na página de blog */
+body.blog main::before {
+  content: "Blog";
+  display: block;
+  font-size: 1.7rem;
+  color: var(--txt);
+  margin-bottom: 1.0rem;
+  margin-top: -0.4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
 /* Links: Main content underlining */
 main p a {
   text-decoration: underline;
@@ -299,50 +313,85 @@ header nav a {
   white-space: nowrap;
 }
 
-/* Tags: Default */
+/* Tags: Pills */
 p.tags {
   margin-block: var(--space-block);
 }
 
 p.tags a,
 p.tags a:visited {
-  margin-inline-end: 0.5em;
+  display: inline-block;
+  margin-inline-end: 0.4em;
+  margin-block-end: 0.4em;
+  padding-block: 0.2em;
+  padding-inline: 0.65em;
   font-size: var(--font-small);
-  color: var(--muted);
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 99px;
   text-decoration: none;
 }
 
-@media (hover: hover) {
-  p.tags a:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-    text-decoration-thickness: 0.05em;
-  }
+/* Upvote button: Heart */
+#upvote-form > small {
+  display: block;
+  margin-block-start: var(--space-block);
 }
 
-/* Upvote button: Default */
 #upvote-form .upvote-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 1rem;
+  color: var(--muted) !important;
   cursor: pointer;
 }
 
-#upvote-form .upvote-count {
-  margin-top: 0;
-  font-size: 1em;
+#upvote-form .upvote-button svg {
+  display: none;
 }
 
-/* Footer: Default */
+#upvote-form .upvote-count::before {
+  content: "♡";
+  display: inline-block;
+  margin-inline-end: 0.15em;
+  font-family: system-ui, sans-serif;
+  font-size: 1.4rem;
+  color: var(--accent);
+  vertical-align: -0.12em;
+  transition: transform 0.15s ease;
+}
+
+@media (hover: hover) {
+  #upvote-form .upvote-button:not([disabled]):hover .upvote-count::before {
+    transform: scale(1.15);
+  }
+}
+
+#upvote-form .upvote-button[disabled] {
+  opacity: 0.7;
+  cursor: default;
+}
+
+#upvote-form .upvote-button[disabled] .upvote-count::before {
+  content: "♥";
+}
+
+/* Footer: Left */
 footer {
-  margin-block-start: calc(var(--space-block) * 1.2);
-  text-align: center;
+  margin-block-start: var(--space-block);
+  padding-block-start: 1.2rem;
+  font-size: var(--font-small);
   color: var(--muted);
+  border-block-start: 1px solid var(--border);
 }
 
 footer p {
   margin-block: 0.5em;
-}
-
-#footer-directive a {
-  margin-inline: 0.2em;
 }
 
 /* =========================
@@ -415,3 +464,868 @@ blockquote cite {
 
 blockquote > :first-child { margin-block-start: 0; }
 blockquote > :last-child { margin-block-end: 0; }
+
+/* Webring buttons | robertbirming.com */
+.webring {
+  margin-block-start: 1.5rem;
+  text-align: left;
+}
+
+.webring-link {
+  display: inline-block;
+  padding: 0.85em 1.2em;
+  font-weight: 500;
+  font-size: var(--font-small);
+  color: var(--link);
+  transition: background 0.15s, border-color 0.15s;
+  text-decoration: none;
+}
+
+.webring-pill {
+  border: 1px solid var(--border);
+  border-radius: 99px;
+}
+
+.webring-rounded {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.webring-dashed {
+  border: 2px dashed var(--border);
+  border-radius: 0;
+}
+
+.webring-ghost {
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+@media (hover: hover) {
+  .webring-pill:hover,
+  .webring-rounded:hover,
+  .webring-dashed:hover {
+    text-decoration: none;
+    background: var(--surface);
+    border-color: var(--muted);
+  }
+
+  .webring-ghost:hover {
+    background: color-mix(in srgb, var(--text) 10%, var(--bg));
+  }
+}
+
+/* Inline menu | robertbirming.com */
+.inline-menu ul {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  padding-block: 0.75rem;
+  padding-inline: 0;
+  list-style: none;
+  font-size: var(--font-small);
+  font-weight: 500;
+  color: var(--muted);
+  background: var(--surface);
+  border-block: 1px solid var(--border);
+}
+
+.inline-menu a {
+  text-decoration: none;
+}
+
+.inline-menu a:visited {
+  color: var(--link);
+}
+
+@media (hover: hover) {
+  .inline-menu a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+}
+
+.inline-menu li:not(:last-child)::after {
+  content: "·";
+  margin-inline-start: 0.8rem;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* CalenBear | robertbirming.com */
+#cb-wrap {
+  margin-block: var(--space-block);
+}
+
+.cb-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block-end: 1.5rem;
+}
+
+.cb-nav button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1;
+}
+
+@media (hover: hover) {
+  .cb-nav button:not([disabled]):hover {
+    color: var(--text);
+  }
+}
+
+.cb-nav button[disabled] {
+  opacity: 0.3;
+  cursor: default;
+}
+
+#cb-year {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+#cb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+}
+
+.cb-month {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+}
+
+.cb-month-name {
+  font-size: var(--font-small);
+  color: var(--muted);
+  margin-block-end: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cb-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  text-align: center;
+}
+
+.cb-day-label {
+  font-size: 0.65rem;
+  color: var(--muted);
+  padding-block: 2px;
+}
+
+.cb-day {
+  font-size: 0.7rem;
+  padding-block: 3px;
+  padding-inline: 1px;
+  border-radius: 3px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.cb-day-empty {
+  visibility: hidden;
+}
+
+.cb-day-post {
+  background: color-mix(in srgb, var(--link) 12%, transparent);
+  color: var(--link);
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .cb-day-post:hover {
+    background: var(--link);
+    color: var(--bg);
+  }
+}
+
+/* Curve divider | robertbirming.com */
+span.curve {
+  display: block;
+  width: 8rem;
+  height: 0.5rem;
+  margin-block-start: calc(var(--space-block) * 0.7);
+  margin-inline: auto;
+  background: var(--link);
+  opacity: 0.9;
+  -webkit-mask:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='8' viewBox='0 0 120 8'><path d='M0 4 Q30 0 60 4 T120 4' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/></svg>")
+    no-repeat center / contain;
+  mask:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='8' viewBox='0 0 120 8'><path d='M0 4 Q30 0 60 4 T120 4' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/></svg>")
+    no-repeat center / contain;
+}
+
+@supports not ((mask: url("")) or (-webkit-mask: url(""))) {
+  span.curve {
+    height: 0.125rem;
+    border-radius: 999px;
+  }
+}
+
+/* Grid | robertbirming.com */
+.grid > ul {
+  list-style: none;
+  margin-block: var(--space-block);
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 36rem) {
+  .grid > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 45rem) {
+  .grid > ul {
+    grid-template-columns: repeat(auto-fit, minmax(11.25rem, 1fr));
+  }
+}
+
+.grid li {
+  margin: 0;
+}
+
+.grid a {
+  display: block;
+  padding: 0.8em 0.9em;
+  line-height: 1.35;
+  font-weight: 500;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+.grid a:focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, var(--link) 45%, var(--surface));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--link) 18%, transparent);
+}
+
+@media (hover: hover) {
+  .grid a:hover {
+    text-decoration: none;
+    border-color: color-mix(in srgb, var(--border) 60%, var(--text));
+  }
+}
+
+/* Timeline | robertbirming.com */
+.timeline {
+  margin-block: var(--space-block);
+}
+
+.timeline ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.timeline ul::before {
+  content: "";
+  position: absolute;
+  inset-block: 0.25em;
+  inset-inline-start: 0.35rem;
+  width: 1px;
+  background: color-mix(in srgb, var(--text) 22%, transparent);
+}
+
+.timeline li {
+  position: relative;
+  padding-inline-start: 2rem;
+  margin-block: 2rem;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.1em;
+  inset-inline-start: 0;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: var(--bg);
+  border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
+  border-radius: 999px;
+}
+
+.timeline li > :last-child {
+  margin-block-end: 0;
+}
+
+.timeline h4 {
+  margin: 0;
+  padding-block-end: 0.9em;
+  font-size: 0.75em;
+  line-height: 1.2;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Reply via email | robertbirming.com */
+.reply-email {
+  margin-block: var(--space-block);
+}
+
+.reply-email a {
+  display: inline-block;
+  padding-block: 0.4em;
+  padding-inline: 1em;
+  font-size: var(--font-small);
+  font-weight: 500;
+  color: var(--link);
+  text-decoration: none;
+  background: color-mix(in srgb, var(--link) 6%, var(--bg));
+  border: 1px solid color-mix(in srgb, var(--link) 18%, var(--bg));
+  border-radius: var(--radius);
+}
+
+.reply-email a:focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, var(--link) 45%, var(--surface));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--link) 18%, transparent);
+}
+
+@media (hover: hover) {
+  .reply-email a:hover {
+    background: color-mix(in srgb, var(--link) 10%, var(--bg));
+    border-color: color-mix(in srgb, var(--link) 28%, var(--bg));
+  }
+}
+
+/* Guestbook (guestbooks.meadow.cafe) | robertbirming.com */
+#guestbooks___guestbook-form-container {
+  margin-block: var(--space-block);
+}
+
+#guestbooks___guestbook-form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 0;
+}
+
+#guestbooks___guestbook-form-container .guestbooks___input-container {
+  margin: 0;
+}
+
+#guestbooks___guestbook-form-container :is(input, textarea, select, button) {
+  appearance: none;
+  font: inherit;
+  letter-spacing: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+#guestbooks___guestbook-form-container :is(input, textarea, select) {
+  display: block;
+  width: 100%;
+  padding-block: 0.5em;
+  padding-inline: 0.7em;
+}
+
+#guestbooks___guestbook-form-container textarea {
+  min-height: 7.5em;
+  resize: vertical;
+}
+
+#guestbooks___guestbook-form-container label {
+  font-size: var(--font-small);
+}
+
+#guestbooks___pow-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#guestbooks___pow-container label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-small);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+#guestbooks___pow-container input[type="checkbox"] {
+  width: auto;
+  display: inline-block;
+  margin: 0;
+}
+
+#guestbooks___guestbook-form-container :is(input, textarea, select):focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, var(--link) 45%, var(--surface));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--link) 18%, transparent);
+}
+
+#guestbooks___guestbook-form-container :is(button, input[type="submit"]) {
+  align-self: flex-start;
+  padding-block: 0.4em;
+  padding-inline: 0.9em;
+  cursor: pointer;
+}
+
+#guestbooks___guestbook-form-container :is(button, input[type="submit"]):disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) {
+  #guestbooks___guestbook-form-container :is(button[type="submit"], input[type="submit"]):not(:disabled):hover {
+    background: color-mix(in srgb, var(--link) 10%, var(--surface));
+    border-color: color-mix(in srgb, var(--link) 30%, var(--border));
+  }
+}
+
+#guestbooks___guestbook-messages-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-block: var(--space-block) 1rem;
+}
+
+#guestbooks___guestbook-messages-header::before {
+  content: "💬";
+  translate: 0 1px;
+}
+
+#guestbooks___guestbook-messages-container > div {
+  margin-block: 1.2rem;
+  padding-block: 1rem;
+  padding-inline: 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+#guestbooks___guestbook-messages-container :is(blockquote, p) {
+  margin: 0.35em 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-style: normal;
+  color: inherit;
+}
+
+#guestbooks___guestbook-messages-container time {
+  font-size: var(--font-small);
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+#guestbooks___guestbook-messages-container a {
+  color: var(--link);
+}
+
+#guestbooks___guestbook-messages-container a:visited {
+  color: var(--visited);
+}
+
+#guestbooks___guestbook-messages-container .guestbook-message-reply {
+  position: relative;
+  margin-block: 0.9rem 0.2rem;
+  margin-inline-start: 1.6rem;
+  padding-block: 0.9rem;
+  padding-inline: 1.1rem;
+  background: color-mix(in srgb, var(--link) 16%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--link) 30%, var(--border));
+  border-radius: var(--radius);
+}
+
+#guestbooks___guestbook-messages-container .guestbook-message-reply::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -1rem;
+  inset-inline-start: -0.9rem;
+  width: 0.7rem;
+  height: 1.6rem;
+  border-inline-start: 2px solid var(--border);
+  border-block-end: 2px solid var(--border);
+  border-end-start-radius: var(--radius);
+  opacity: 0.8;
+}
+
+#guestbooks___guestbook-form-container ::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+/* Announcement bar | robertbirming.com */
+.bar {
+  margin-block: var(--space-block);
+  padding-block: 1.2rem;
+  padding-inline: 0.7rem;
+  text-align: center;
+  font-size: var(--font-small);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.bar p {
+  margin: 0;
+}
+
+/* External link marker | robertbirming.com */
+main a[href^="http"]:not([href*="YOUR_DOMAIN"])::after {
+  content: "\00a0↗\FE0E";
+  font-size: 0.7em;
+  text-decoration: none;
+  display: inline;
+  vertical-align: super;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+main a[href^="http"]:not([href*="YOUR_DOMAIN"]):has(img)::after {
+  content: none;
+}
+
+/* Copy code button | robertbirming.com */
+.highlight {
+  position: relative;
+}
+
+.copy-code-button {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+@media (hover: hover) {
+  .copy-code-button:hover {
+    color: var(--text);
+    background: var(--border);
+  }
+}
+
+.copy-code-button:focus-visible {
+  color: var(--text);
+  background: var(--border);
+}
+
+/* Archive toolkit | robertbirming.com */
+.bearming-archive-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  margin-block: var(--space-block) 0.9rem;
+}
+
+.bearming-archive :is(input[type="search"], select) {
+  padding-block: 0.55em;
+  padding-inline: 0.7em;
+  font: inherit;
+  letter-spacing: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  appearance: none;
+}
+
+.bearming-archive :is(input[type="search"], select):focus-visible {
+  border-color: color-mix(in srgb, var(--link) 45%, var(--surface));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--link) 18%, transparent);
+}
+
+.bearming-archive input[type="search"] {
+  flex: 1 1 18rem;
+  min-width: 12rem;
+  max-width: 30rem;
+}
+
+.bearming-archive input[type="search"]::placeholder {
+  color: var(--muted);
+}
+
+.blog-posts li[hidden] {
+  display: none;
+}
+
+.bearming-archive-select {
+  position: relative;
+  flex: 0 1 10rem;
+  min-width: 8.5rem;
+  max-width: 100%;
+}
+
+.bearming-archive-select select {
+  width: 100%;
+  padding-inline-end: 2.2em;
+}
+
+.bearming-archive-select::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: 0.9em;
+  width: 0.5em;
+  height: 0.5em;
+  border-inline-end: 2px solid var(--text);
+  border-block-end: 2px solid var(--text);
+  transform: translateY(-60%) rotate(45deg);
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.bearming-archive-empty {
+  margin-block: 0.6rem var(--space-block);
+  font-size: var(--font-small);
+  color: var(--muted);
+}
+
+.bearming-archive-month {
+  margin-block: 2.3rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.blog-posts li[hidden] {
+  display: none;
+}
+
+.bearming-archive-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 1rem;
+  margin-block: var(--space-block) 0;
+  font-size: var(--font-small);
+}
+
+.bearming-archive-pagination span {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.bearming-archive-pagination button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  letter-spacing: inherit;
+  color: var(--link);
+  cursor: pointer;
+}
+
+.bearming-archive-pagination button:disabled,
+.bearming-archive-pagination button[aria-disabled="true"] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.bearming-archive-pagination #bearming-archive-prev::before {
+  content: "\2190\00a0";
+}
+
+.bearming-archive-pagination #bearming-archive-next::after {
+  content: "\00a0\2192";
+}
+
+/* CalenBear | robertbirming.com */
+#cb-wrap {
+  margin-block: var(--space-block);
+}
+
+.cb-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block-end: 1.5rem;
+}
+
+.cb-nav button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1;
+}
+
+@media (hover: hover) {
+  .cb-nav button:not([disabled]):hover {
+    color: var(--text);
+  }
+}
+
+.cb-nav button[disabled] {
+  opacity: 0.3;
+  cursor: default;
+}
+
+#cb-year {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+#cb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+}
+
+.cb-month {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+}
+
+.cb-month-name {
+  font-size: var(--font-small);
+  color: var(--muted);
+  margin-block-end: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cb-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  text-align: center;
+}
+
+.cb-day-label {
+  font-size: 0.65rem;
+  color: var(--muted);
+  padding-block: 2px;
+}
+
+.cb-day {
+  font-size: 0.7rem;
+  padding-block: 3px;
+  padding-inline: 1px;
+  border-radius: 3px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.cb-day-empty {
+  visibility: hidden;
+}
+
+.cb-day-post {
+  background: color-mix(in srgb, var(--link) 12%, transparent);
+  color: var(--link);
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .cb-day-post:hover {
+    background: var(--link);
+    color: var(--bg);
+  }
+}
+
+/* Polaroid photo | robertbirming.com */
+.polaroid {
+  display: flow-root;
+  width: fit-content;
+  margin-block: var(--space-block);
+  margin-inline: auto;
+  padding: 0.7rem 0.7rem 1.3rem;
+  background: #fffdf5;
+  border-radius: 2px;
+  box-shadow: 0 2px 16px color-mix(in srgb, var(--text) 15%, transparent);
+  transform: rotate(-1.2deg);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .polaroid {
+    box-shadow: 0 2px 14px color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+}
+
+.polaroid p {
+  margin: 0;
+}
+
+.polaroid img {
+  display: block;
+  margin: 0;
+  border-radius: 0;
+  filter: saturate(0.75) contrast(0.95);
+}
+
+.polaroid em {
+  display: block;
+  margin-block-start: 0.7rem;
+  text-align: center;
+  font-size: var(--font-small);
+  font-family: cursive;
+  color: #666;
+}
+
+@media (hover: hover) {
+  .polaroid:hover {
+    transform: rotate(0deg);
+    box-shadow: 0 6px 24px color-mix(in srgb, var(--text) 20%, transparent);
+  }
+}
+
+/* Frame image | robertbirming.com */
+.frame {
+  margin-block: var(--space-block);
+  padding: 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 2);
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: var(--radius);
+}
+
+.frame p {
+  margin: 0;
+}
