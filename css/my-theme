@@ -1,0 +1,1893 @@
+/*
+* Bearming — a personal Bear theme
+* Version 5.5.0 | 2026-05-26
+* Robert Birming | robertbirming.com
+*/
+
+/* Palette: Flexoki */
+@import url('https://fonts.bunny.net/css?family=bricolage-grotesque:600,700,800|dm-sans:400,400i,500&display=swap');
+:root {
+  color-scheme: light dark;
+  /* Layout */
+  --page-width: 65ch;
+  --line-height: 1.65;
+  --space-block: 1.8rem;
+  --radius: 4px;
+  /* Typography */
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --font-size: 1.0625rem;
+  --font-small: calc(var(--font-size) * 0.875);
+  /* Light — Flexoki */
+  --bg: #fffcf0;          /* paper */
+  --text: #100f0f;        /* black */
+  --link: #24837B;        /* cyan-600 */
+  --visited: #878580;     /* base-300 */
+  --accent: #205EA6;      /* red-600 */
+  --muted: #6f6e69;       /* tx-2 */
+  --surface: #f2f0e5;     /* base-50 */
+  --border: #e6e4d9;      /* base-100 */
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark — Flexoki */
+    --bg: #100f0f;        /* black */
+    --text: #cecdc3;      /* tx */
+    --link: #3AA99F;      /* cyan-400 */
+    --visited: #878580;   /* base-700 */
+    --accent: #4385BE;    /* red-400 */
+    --muted: #878580;     /* tx-2 */
+    --surface: #1c1b1a;   /* base-950 */
+    --border: #282726;    /* base-900 */
+  }
+}
+
+/* =========================
+   Core styles
+   Handle with bear care
+   ========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--bg);
+}
+
+body {
+  margin-inline: auto;
+  padding: 1.25rem;
+  max-width: var(--page-width);
+  font-family: var(--font-body);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  overflow-wrap: break-word;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+p {
+  margin-block: 1.2em;
+}
+
+h1, h2, h3, h4 {
+  margin-block: var(--space-block) 0.5em;
+  line-height: 1.3;
+  font-family: var(--font-heading);
+}
+
+h1 { font-size: 1.7rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.3rem; }
+h4 { font-size: 1.1rem; }
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+main a:visited {
+  color: var(--visited);
+}
+
+@media (hover: hover) {
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 0.12em;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+
+ul, ol {
+  padding-inline-start: 1.5rem;
+}
+
+li,
+li > ul,
+li > ol {
+  margin-block: 0.2em;
+}
+
+hr,
+img,
+video,
+pre,
+blockquote {
+  margin-block: var(--space-block);
+}
+
+hr {
+  border: none;
+  border-block-start: 1px solid var(--border);
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+pre {
+  padding-block: 1rem;
+  padding-inline: 1.2rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: var(--font-small);
+  line-height: 1.5;
+  tab-size: 2;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+code {
+  padding-block: 0.15em;
+  padding-inline: 0.3em;
+  font-family: var(--font-mono);
+  font-size: var(--font-small);
+  overflow-wrap: anywhere;
+  background-color: var(--surface);
+  border-radius: var(--radius);
+}
+
+pre code {
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  font-size: inherit;
+  overflow-wrap: normal;
+}
+
+mark {
+  padding-inline: 0.15em;
+  color: var(--bg);
+  background-color: color-mix(in srgb, var(--accent) 60%, var(--text));
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-small);
+}
+
+th,
+td {
+  padding-block: 0.5em;
+  padding-inline: 0.75em;
+  border: 1px solid var(--border);
+  text-align: start;
+}
+
+th {
+  background-color: var(--surface);
+  font-weight: 700;
+}
+
+time {
+  font-family: var(--font-mono);
+  font-size: var(--font-small);
+  font-style: normal;
+  color: var(--muted);
+}
+
+header nav p,
+main > :first-child,
+.post main > h1 + p {
+  margin-block-start: 0;
+}
+
+.post main > h1 {
+  margin-block-end: 0;
+}
+
+/* =========================
+   Style options
+   robertbirming.com/bearming/styles
+   ========================= */
+
+/* Mostrar título blog na página de blog */
+body.blog main::before {
+  content: "Blog";
+  display: block;
+  font-size: 1.7rem;
+  color: var(--txt);
+  margin-bottom: 1.0rem;
+  margin-top: -0.4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Links: Main content underlining */
+main p a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.05em;
+}
+
+/* Blockquote: Default */
+blockquote {
+  margin-inline: 0;
+  padding-block: 0.1em;
+  padding-inline-start: 1.2em;
+  font-style: italic;
+  color: var(--muted);
+  border-inline-start: 3px solid var(--accent);
+}
+
+blockquote p { margin-block: 0; }
+
+/* Header: Horizontal */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.1rem 1rem;
+  margin-block: 0 var(--space-block);
+}
+
+header a.title {
+  display: inline-block;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.title h1 {
+  margin-block: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+header nav p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-block: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+header nav a {
+  margin-inline-end: 0;
+}
+
+/* Blog list: Default */
+.blog-posts {
+  margin-block-end: var(--space-block);
+  padding: 0;
+  list-style: none;
+}
+
+.blog-posts li {
+  display: flex;
+  align-items: baseline;
+}
+
+.blog-posts li a {
+  margin-inline-end: auto;
+}
+
+.blog-posts li span {
+  flex: 0 0 7.6rem;
+  font-size: var(--font-small);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Tags: Pills */
+p.tags {
+  margin-block: var(--space-block);
+}
+
+p.tags a,
+p.tags a:visited {
+  display: inline-block;
+  margin-inline-end: 0.4em;
+  margin-block-end: 0.4em;
+  padding-block: 0.2em;
+  padding-inline: 0.65em;
+  font-size: var(--font-small);
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  text-decoration: none;
+}
+
+/* Upvote button: Heart */
+#upvote-form > small {
+  display: block;
+  margin-block-start: var(--space-block);
+}
+
+#upvote-form .upvote-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 1rem;
+  color: var(--muted) !important;
+  cursor: pointer;
+}
+
+#upvote-form .upvote-button svg {
+  display: none;
+}
+
+#upvote-form .upvote-count::before {
+  content: "♡";
+  display: inline-block;
+  margin-inline-end: 0.15em;
+  font-family: system-ui, sans-serif;
+  font-size: 1.4rem;
+  color: var(--accent);
+  vertical-align: -0.12em;
+  transition: transform 0.15s ease;
+}
+
+@media (hover: hover) {
+  #upvote-form .upvote-button:not([disabled]):hover .upvote-count::before {
+    transform: scale(1.15);
+  }
+}
+
+#upvote-form .upvote-button[disabled] {
+  opacity: 0.7;
+  cursor: default;
+}
+
+#upvote-form .upvote-button[disabled] .upvote-count::before {
+  content: "♥";
+}
+
+/* Footer: Default */
+footer {
+  margin-block-start: calc(var(--space-block) * 1.2);
+  padding-block-start: 1.2rem;
+  text-align: center;
+  font-size: var(--font-small);
+  color: var(--muted);
+  border-block-start: 1px solid var(--border);
+}
+
+footer p {
+  margin-block: 0.5em;
+}
+
+#footer-directive a {
+  margin-inline: 0.2em;
+}
+
+/* =========================
+   Optional add-ons
+   robertbirming.com/bearming/add-ons
+   ========================= */
+
+/* Footnote styles | robertbirming.com */
+.footnotes {
+  margin-block-start: var(--space-block);
+  padding-block-start: 1.2rem;
+  font-size: var(--font-small);
+  color: var(--muted);
+  border-block-start: 1px solid var(--border);
+}
+
+.footnotes ol {
+  padding-inline-start: 1.5rem;
+}
+
+.footnotes li {
+  margin-block-end: 0.4em;
+}
+
+.footnotes p {
+  display: inline;
+  margin: 0;
+}
+
+.footnote-ref a {
+  text-decoration: none;
+  font-feature-settings: "tnum";
+}
+
+.footnote {
+  margin-inline-start: 0.2em;
+  text-decoration: none;
+}
+
+/* Figure caption | robertbirming.com */
+figure {
+  margin-inline: 0;
+  margin-block: var(--space-block);
+}
+
+figure > p {
+  margin-block: 0;
+}
+
+figure img,
+figure video {
+  margin-block: 0;
+}
+
+figcaption {
+  margin-block-start: 0.5em;
+  font-size: var(--font-small);
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Blockquote: Citations | robertbirming.com */
+blockquote cite {
+  display: block;
+  margin-block-start: 0.7em;
+  font-size: var(--font-small);
+  font-style: normal;
+}
+
+blockquote > :first-child { margin-block-start: 0; }
+blockquote > :last-child { margin-block-end: 0; }
+
+/* Webring buttons | robertbirming.com */
+.webring {
+  margin-block-start: 1.5rem;
+  text-align: left;
+}
+
+.webring-link {
+  display: inline-block;
+  padding: 0.85em 1.2em;
+  font-weight: 500;
+  font-size: var(--font-small);
+  color: var(--link);
+  transition: background 0.15s, border-color 0.15s;
+  text-decoration: none;
+}
+
+.webring-pill {
+  border: 1px solid var(--border);
+  border-radius: 99px;
+}
+
+.webring-rounded {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.webring-dashed {
+  border: 2px dashed var(--border);
+  border-radius: 0;
+}
+
+.webring-ghost {
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+@media (hover: hover) {
+  .webring-pill:hover,
+  .webring-rounded:hover,
+  .webring-dashed:hover {
+    text-decoration: none;
+    background: var(--surface);
+    border-color: var(--muted);
+  }
+
+  .webring-ghost:hover {
+    background: color-mix(in srgb, var(--text) 10%, var(--bg));
+  }
+}
+
+/* Inline menu | robertbirming.com */
+.inline-menu ul {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  padding-block: 0.75rem;
+  padding-inline: 0;
+  list-style: none;
+  font-size: var(--font-small);
+  font-weight: 500;
+  color: var(--muted);
+  background: var(--surface);
+  border-block: 1px solid var(--border);
+}
+
+.inline-menu a {
+  text-decoration: none;
+}
+
+.inline-menu a:visited {
+  color: var(--link);
+}
+
+@media (hover: hover) {
+  .inline-menu a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+}
+
+.inline-menu li:not(:last-child)::after {
+  content: "·";
+  margin-inline-start: 0.8rem;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* CalenBear | robertbirming.com */
+#cb-wrap {
+  margin-block: var(--space-block);
+}
+
+.cb-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block-end: 1.5rem;
+}
+
+.cb-nav button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1;
+}
+
+@media (hover: hover) {
+  .cb-nav button:not([disabled]):hover {
+    color: var(--text);
+  }
+}
+
+.cb-nav button[disabled] {
+  opacity: 0.3;
+  cursor: default;
+}
+
+#cb-year {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+#cb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+}
+
+.cb-month {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+}
+
+.cb-month-name {
+  font-size: var(--font-small);
+  color: var(--muted);
+  margin-block-end: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cb-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  text-align: center;
+}
+
+.cb-day-label {
+  font-size: 0.65rem;
+  color: var(--muted);
+  padding-block: 2px;
+}
+
+.cb-day {
+  font-size: 0.7rem;
+  padding-block: 3px;
+  padding-inline: 1px;
+  border-radius: 3px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.cb-day-empty {
+  visibility: hidden;
+}
+
+.cb-day-post {
+  background: color-mix(in srgb, var(--link) 12%, transparent);
+  color: var(--link);
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .cb-day-post:hover {
+    background: var(--link);
+    color: var(--bg);
+  }
+}
+
+/* Curve divider | robertbirming.com */
+span.curve {
+  display: block;
+  width: 8rem;
+  height: 0.5rem;
+  margin-block-start: calc(var(--space-block) * 0.7);
+  margin-inline: auto;
+  background: var(--link);
+  opacity: 0.9;
+  -webkit-mask:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='8' viewBox='0 0 120 8'><path d='M0 4 Q30 0 60 4 T120 4' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/></svg>")
+    no-repeat center / contain;
+  mask:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='8' viewBox='0 0 120 8'><path d='M0 4 Q30 0 60 4 T120 4' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/></svg>")
+    no-repeat center / contain;
+}
+
+@supports not ((mask: url("")) or (-webkit-mask: url(""))) {
+  span.curve {
+    height: 0.125rem;
+    border-radius: 999px;
+  }
+}
+
+/* Grid | robertbirming.com */
+.grid > ul {
+  list-style: none;
+  margin-block: var(--space-block);
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 36rem) {
+  .grid > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 45rem) {
+  .grid > ul {
+    grid-template-columns: repeat(auto-fit, minmax(11.25rem, 1fr));
+  }
+}
+
+.grid li {
+  margin: 0;
+}
+
+.grid a {
+  display: block;
+  padding: 0.8em 0.9em;
+  line-height: 1.35;
+  font-weight: 500;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+.grid a:focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, var(--link) 45%, var(--surface));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--link) 18%, transparent);
+}
+
+@media (hover: hover) {
+  .grid a:hover {
+    text-decoration: none;
+    border-color: color-mix(in srgb, var(--border) 60%, var(--text));
+  }
+}
+
+/* Timeline | robertbirming.com */
+.timeline {
+  margin-block: var(--space-block);
+}
+
+.timeline ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.timeline ul::before {
+  content: "";
+  position: absolute;
+  inset-block: 0.25em;
+  inset-inline-start: 0.35rem;
+  width: 1px;
+  background: color-mix(in srgb, var(--text) 22%, transparent);
+}
+
+.timeline li {
+  position: relative;
+  padding-inline-start: 2rem;
+  margin-block: 2rem;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.1em;
+  inset-inline-start: 0;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: var(--bg);
+  border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
+  border-radius: 999px;
+}
+
+.timeline li > :last-child {
+  margin-block-end: 0;
+}
+
+.timeline h4 {
+  margin: 0;
+  padding-block-end: 0.9em;
+  font-size: 0.75em;
+  line-height: 1.2;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Reply via email | robertbirming.com */
+.reply-email {
+  margin-block: var(--space-block);
+}
+
+.reply-email a {
+  display: inline-block;
+  padding-block: 0.4em;
+  padding-inline: 1em;
+  font-size: var(--font-small);
+  font-weight: 500;
+  color: var(--link);
+  text-decoration: none;
+  background: color-mix(in srgb, var(--link) 6%, var(--bg));
+  border: 1px solid color-mix(in srgb, var(--link) 18%, var(--bg));
+  border-radius: var(--radius);
+}
+
+.reply-email a:focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, var(--link) 45%, var(--surface));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--link) 18%, transparent);
+}
+
+@media (hover: hover) {
+  .reply-email a:hover {
+    background: color-mix(in srgb, var(--link) 10%, var(--bg));
+    border-color: color-mix(in srgb, var(--link) 28%, var(--bg));
+  }
+}
+
+/* Guestbook (guestbooks.meadow.cafe) | robertbirming.com */
+#guestbooks___guestbook-form-container {
+  margin-block: var(--space-block);
+}
+
+#guestbooks___guestbook-form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 0;
+}
+
+#guestbooks___guestbook-form-container .guestbooks___input-container {
+  margin: 0;
+}
+
+#guestbooks___guestbook-form-container :is(input, textarea, select, button) {
+  appearance: none;
+  font: inherit;
+  letter-spacing: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+#guestbooks___guestbook-form-container :is(input, textarea, select) {
+  display: block;
+  width: 100%;
+  padding-block: 0.5em;
+  padding-inline: 0.7em;
+}
+
+#guestbooks___guestbook-form-container textarea {
+  min-height: 7.5em;
+  resize: vertical;
+}
+
+#guestbooks___guestbook-form-container label {
+  font-size: var(--font-small);
+}
+
+#guestbooks___pow-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#guestbooks___pow-container label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-small);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+#guestbooks___pow-container input[type="checkbox"] {
+  width: auto;
+  display: inline-block;
+  margin: 0;
+}
+
+#guestbooks___guestbook-form-container :is(input, textarea, select):focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, var(--link) 45%, var(--surface));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--link) 18%, transparent);
+}
+
+#guestbooks___guestbook-form-container :is(button, input[type="submit"]) {
+  align-self: flex-start;
+  padding-block: 0.4em;
+  padding-inline: 0.9em;
+  cursor: pointer;
+}
+
+#guestbooks___guestbook-form-container :is(button, input[type="submit"]):disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) {
+  #guestbooks___guestbook-form-container :is(button[type="submit"], input[type="submit"]):not(:disabled):hover {
+    background: color-mix(in srgb, var(--link) 10%, var(--surface));
+    border-color: color-mix(in srgb, var(--link) 30%, var(--border));
+  }
+}
+
+#guestbooks___guestbook-messages-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-block: var(--space-block) 1rem;
+}
+
+#guestbooks___guestbook-messages-header::before {
+  content: "💬";
+  translate: 0 1px;
+}
+
+#guestbooks___guestbook-messages-container > div {
+  margin-block: 1.2rem;
+  padding-block: 1rem;
+  padding-inline: 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+#guestbooks___guestbook-messages-container :is(blockquote, p) {
+  margin: 0.35em 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-style: normal;
+  color: inherit;
+}
+
+#guestbooks___guestbook-messages-container time {
+  font-size: var(--font-small);
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+#guestbooks___guestbook-messages-container a {
+  color: var(--link);
+}
+
+#guestbooks___guestbook-messages-container a:visited {
+  color: var(--visited);
+}
+
+#guestbooks___guestbook-messages-container .guestbook-message-reply {
+  position: relative;
+  margin-block: 0.9rem 0.2rem;
+  margin-inline-start: 1.6rem;
+  padding-block: 0.9rem;
+  padding-inline: 1.1rem;
+  background: color-mix(in srgb, var(--link) 16%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--link) 30%, var(--border));
+  border-radius: var(--radius);
+}
+
+#guestbooks___guestbook-messages-container .guestbook-message-reply::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -1rem;
+  inset-inline-start: -0.9rem;
+  width: 0.7rem;
+  height: 1.6rem;
+  border-inline-start: 2px solid var(--border);
+  border-block-end: 2px solid var(--border);
+  border-end-start-radius: var(--radius);
+  opacity: 0.8;
+}
+
+#guestbooks___guestbook-form-container ::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+/* Announcement bar | robertbirming.com */
+.bar {
+  margin-block: var(--space-block);
+  padding-block: 1.2rem;
+  padding-inline: 0.7rem;
+  text-align: center;
+  font-size: var(--font-small);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.bar p {
+  margin: 0;
+}
+
+/* External link marker | robertbirming.com */
+main a[href^="http"]:not([href*="rcapitao.com"])::after {
+  content: "\00a0↗\FE0E";
+  font-size: 0.7em;
+  text-decoration: none;
+  display: inline;
+  vertical-align: super;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+main a[href^="http"]:not([href*="rcapitao.com"]):has(img)::after {
+  content: none;
+}
+
+/* Copy code button | robertbirming.com */
+.highlight {
+  position: relative;
+}
+
+.copy-code-button {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+@media (hover: hover) {
+  .copy-code-button:hover {
+    color: var(--text);
+    background: var(--border);
+  }
+}
+
+.copy-code-button:focus-visible {
+  color: var(--text);
+  background: var(--border);
+}
+
+/* Archive toolkit | robertbirming.com */
+.bearming-archive-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  margin-block: var(--space-block) 0.9rem;
+}
+
+.bearming-archive :is(input[type="search"], select) {
+  padding-block: 0.55em;
+  padding-inline: 0.7em;
+  font: inherit;
+  letter-spacing: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  appearance: none;
+}
+
+.bearming-archive :is(input[type="search"], select):focus-visible {
+  border-color: color-mix(in srgb, var(--link) 45%, var(--surface));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--link) 18%, transparent);
+}
+
+.bearming-archive input[type="search"] {
+  flex: 1 1 18rem;
+  min-width: 12rem;
+  max-width: 30rem;
+}
+
+.bearming-archive input[type="search"]::placeholder {
+  color: var(--muted);
+}
+
+.blog-posts li[hidden] {
+  display: none;
+}
+
+.bearming-archive-select {
+  position: relative;
+  flex: 0 1 10rem;
+  min-width: 8.5rem;
+  max-width: 100%;
+}
+
+.bearming-archive-select select {
+  width: 100%;
+  padding-inline-end: 2.2em;
+}
+
+.bearming-archive-select::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: 0.9em;
+  width: 0.5em;
+  height: 0.5em;
+  border-inline-end: 2px solid var(--text);
+  border-block-end: 2px solid var(--text);
+  transform: translateY(-60%) rotate(45deg);
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.bearming-archive-empty {
+  margin-block: 0.6rem var(--space-block);
+  font-size: var(--font-small);
+  color: var(--muted);
+}
+
+.bearming-archive-month {
+  margin-block: 2.3rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.blog-posts li[hidden] {
+  display: none;
+}
+
+.bearming-archive-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 1rem;
+  margin-block: var(--space-block) 0;
+  font-size: var(--font-small);
+}
+
+.bearming-archive-pagination span {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.bearming-archive-pagination button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  letter-spacing: inherit;
+  color: var(--link);
+  cursor: pointer;
+}
+
+.bearming-archive-pagination button:disabled,
+.bearming-archive-pagination button[aria-disabled="true"] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.bearming-archive-pagination #bearming-archive-prev::before {
+  content: "\2190\00a0";
+}
+
+.bearming-archive-pagination #bearming-archive-next::after {
+  content: "\00a0\2192";
+}
+
+/* CalenBear | robertbirming.com */
+#cb-wrap {
+  margin-block: var(--space-block);
+}
+
+.cb-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block-end: 1.5rem;
+}
+
+.cb-nav button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1;
+}
+
+@media (hover: hover) {
+  .cb-nav button:not([disabled]):hover {
+    color: var(--text);
+  }
+}
+
+.cb-nav button[disabled] {
+  opacity: 0.3;
+  cursor: default;
+}
+
+#cb-year {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+#cb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+}
+
+.cb-month {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+}
+
+.cb-month-name {
+  font-size: var(--font-small);
+  color: var(--muted);
+  margin-block-end: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cb-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  text-align: center;
+}
+
+.cb-day-label {
+  font-size: 0.65rem;
+  color: var(--muted);
+  padding-block: 2px;
+}
+
+.cb-day {
+  font-size: 0.7rem;
+  padding-block: 3px;
+  padding-inline: 1px;
+  border-radius: 3px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.cb-day-empty {
+  visibility: hidden;
+}
+
+.cb-day-post {
+  background: color-mix(in srgb, var(--link) 12%, transparent);
+  color: var(--link);
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .cb-day-post:hover {
+    background: var(--link);
+    color: var(--bg);
+  }
+}
+
+/* Polaroid photo | robertbirming.com */
+.polaroid {
+  display: flow-root;
+  width: fit-content;
+  margin-block: var(--space-block);
+  margin-inline: auto;
+  padding: 0.7rem 0.7rem 1.3rem;
+  background: #fffdf5;
+  border-radius: 2px;
+  box-shadow: 0 2px 16px color-mix(in srgb, var(--text) 15%, transparent);
+  transform: rotate(-1.2deg);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .polaroid {
+    box-shadow: 0 2px 14px color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+}
+
+.polaroid p {
+  margin: 0;
+}
+
+.polaroid img {
+  display: block;
+  margin: 0;
+  border-radius: 0;
+  filter: saturate(0.75) contrast(0.95);
+}
+
+.polaroid em {
+  display: block;
+  margin-block-start: 0.7rem;
+  text-align: center;
+  font-size: var(--font-small);
+  font-family: cursive;
+  color: #666;
+}
+
+@media (hover: hover) {
+  .polaroid:hover {
+    transform: rotate(0deg);
+    box-shadow: 0 6px 24px color-mix(in srgb, var(--text) 20%, transparent);
+  }
+}
+
+/* Frame image | robertbirming.com */
+.frame {
+  margin-block: var(--space-block);
+  padding: 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 2);
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: var(--radius);
+}
+
+.frame p {
+  margin: 0;
+}
+
+/* Bearlytics | robertbirming.com */
+.bl-widget {
+  max-width: 28rem;
+  margin-block: var(--space-block);
+  padding-block: 1.25rem 1rem;
+  padding-inline: 1.5rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.bl-label {
+  margin-block: 0 0.75rem;
+  font-size: var(--font-small);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.bl-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.bl-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-block: 0.25rem;
+}
+
+.bl-divider {
+  margin-block: 0.6rem;
+  border-block-start: 1px solid var(--border);
+}
+
+.bl-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.bl-stat-label,
+.bl-stat-value {
+  font-size: var(--font-small);
+}
+
+.bl-stat-label {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.bl-stat-value {
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+.bl-widget a.bl-stat-link,
+.bl-widget a.bl-stat-link:visited {
+  color: var(--muted);l
+  text-decoration: none;
+}
+
+.bl-loading,
+.bl-empty,
+.bl-error {
+  font-size: var(--font-small);
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Bearming gallery lightbox | robertbirming.com */
+
+.bearming-gallery {
+  margin-block: var(--space-block);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.6rem;
+}
+
+.bearming-gallery > p {
+  margin: 0;
+  display: contents;
+}
+
+.bearming-gallery a {
+  display: block;
+}
+
+/* Reset figure margin and hide caption in grid */
+
+.bearming-gallery figure {
+  margin: 0;
+}
+
+.bearming-gallery figcaption {
+  display: none;
+}
+
+/* Thumbnails */
+
+.bearming-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 0.15s ease;
+}
+
+@media (hover: hover) {
+  .bearming-gallery img:hover {
+    transform: scale(1.03);
+  }
+}
+
+.bearming-gallery img:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+@media (min-width: 900px) {
+  .bearming-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  }
+}
+
+/* Lightbox overlay */
+
+.bearming-gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(0, 0, 0, 0.86);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.bearming-gallery-lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Image and caption wrapper */
+
+.bearming-gallery-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+/* The large image */
+
+.bearming-gallery-figure img {
+  display: block;
+  max-width: min(100%, 68.75rem);
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  border-radius: calc(var(--radius) * 2);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  cursor: zoom-out;
+  image-rendering: auto;
+}
+
+/* Caption in lightbox */
+
+.bearming-gallery-caption {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: var(--font-small, 0.9em);
+  font-style: italic;
+  text-align: center;
+  margin: 0;
+}
+
+.bearming-gallery-caption:empty {
+  display: none;
+}
+
+/* Shared button styles */
+
+.bearming-gallery-close,
+.bearming-gallery-prev,
+.bearming-gallery-next {
+  position: absolute;
+  padding: 0.35em 0.75em;
+  border-radius: 999px;
+  font: inherit;
+  font-size: var(--font-small);
+  line-height: 1.2;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .bearming-gallery-close:hover,
+  .bearming-gallery-prev:hover,
+  .bearming-gallery-next:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+.bearming-gallery-close:focus,
+.bearming-gallery-prev:focus,
+.bearming-gallery-next:focus {
+  outline: none;
+}
+
+.bearming-gallery-close:focus-visible,
+.bearming-gallery-prev:focus-visible,
+.bearming-gallery-next:focus-visible {
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.22);
+}
+
+/* Button positions */
+
+.bearming-gallery-close {
+  inset-block-start: 0.9rem;
+  inset-inline-end: 0.9rem;
+}
+
+.bearming-gallery-prev {
+  inset-inline-start: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bearming-gallery-next {
+  inset-inline-end: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Respect reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .bearming-gallery-lightbox,
+  .bearming-gallery img {
+    transition: none;
+  }
+}
+
+/* Latest status | robertbirming.com */
+.latest-status {
+  max-inline-size: 34rem;
+  margin-inline: auto;
+  margin-block: var(--space-block);
+  padding: 1rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.latest-status::before {
+  content: "ÚLTIMO STATUS";
+  display: block;
+  margin-block-end: 0.9em;
+  font-family: var(--font-mono);
+  font-size: 0.87em;
+  color: var(--muted);
+}
+
+/* Single image: float left beside text */
+.latest-status-body--has-thumb {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.3em 1rem;
+  align-items: start;
+}
+
+.latest-status-images--single .latest-status-img-btn img {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: var(--radius);
+  display: block;
+  margin: 0;
+  margin-block-start: 0.15rem;
+}
+
+/* Multiple images: full-width row below text */
+.latest-status-images:not(.latest-status-images--single) {
+  display: flex;
+  gap: 0.4em;
+  margin-block-start: 0.9em;
+}
+
+.latest-status-images:not(.latest-status-images--single) .latest-status-img-btn {
+  flex: 1;
+  min-width: 0;
+}
+
+.latest-status-images:not(.latest-status-images--single) .latest-status-img-btn img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  display: block;
+  margin: 0;
+}
+
+.latest-status-img-btn {
+  all: unset;
+  cursor: zoom-in;
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.latest-status-text {
+  color: var(--text);
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+
+.latest-status-text p { margin-block: 0.4em; }
+.latest-status-text > :first-child { margin-block-start: 0; }
+.latest-status-text > :last-child { margin-block-end: 0; }
+
+.latest-status-card {
+  display: flex;
+  gap: 0.5em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-block-start: 0.75em;
+  text-decoration: none;
+  background: transparent;
+  transition: background 0.15s ease;
+}
+
+.latest-status-card-thumb {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin: 0.5em 0 0.5em 0.5em;
+  border-radius: var(--radius);
+  align-self: flex-start;
+}
+
+.latest-status-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  padding: 0.4em 0.5em;
+  min-width: 0;
+}
+
+.latest-status-card-title {
+  display: block;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.latest-status-card-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--text);
+}
+
+.latest-status-meta {
+  margin-block-start: 0.85em;
+}
+
+.latest-status-time {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  color: var(--muted);
+}
+
+/* Lightbox */
+.latest-status-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.latest-status-lightbox.open {
+  display: flex;
+}
+
+.latest-status-lb-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.latest-status-lb-img {
+  max-width: min(82vw, 1200px);
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: var(--radius);
+  display: block;
+  margin: 0;
+  cursor: zoom-in;
+}
+
+.latest-status-lb-caption {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85em;
+  font-style: italic;
+  text-align: center;
+  margin: 0;
+}
+
+.latest-status-lb-nav {
+  all: unset;
+  color: #fff;
+  font-size: 3rem;
+  line-height: 1;
+  padding-inline: 1rem;
+  cursor: pointer;
+  opacity: 0.7;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+footer .latest-status {
+  text-align: start;
+}
+
+@media (hover: hover) {
+  .latest-status-img-btn:hover img {
+    opacity: 0.88;
+  }
+
+  .latest-status-lb-nav:hover {
+    opacity: 1;
+  }
+
+  .latest-status-card:hover {
+    background: color-mix(in srgb, var(--border) 30%, transparent);
+    text-decoration: none;
+  }
+}
+
+.latest-status-quote {
+  display: block;
+  padding: 0.6em 0.8em;
+  text-decoration: none;
+}
+
+.latest-status-quote-author {
+  display: block;
+  font-size: calc(var(--font-small, 0.875rem) * 0.9);
+  font-weight: 600;
+  color: var(--muted);
+  margin-block-end: 0.3em;
+}
+
+.latest-status-quote-text {
+  font-size: var(--font-small, 0.875rem);
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Cards */
+.card {
+  margin-block-start: var(--space-block);
+  padding-block: 1.2rem;
+  padding-inline: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.card h4 {
+  margin-block: 0 -0.5rem;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.card a:visited {
+  color: var(--link);
+}
+
+@media (hover: hover) {
+  .card a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.12em;
+    text-underline-offset: 0.2em;
+  }
+}
+
+.card p:last-child {
+  margin-block-end: 0;
+}
+
+/* Breadcrumb | robertbirming.com */
+.breadcrumb {
+  margin-block: -0.8rem var(--space-block);
+  font-size: var(--font-small);
+  color: var(--muted);
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.breadcrumb li + li::before {
+  content: "›";
+  margin-inline-end: 0.3em;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+}
+
+.breadcrumb a:visited {
+  color: var(--link);
+}
+
+@media (hover: hover) {
+  .breadcrumb a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 0.12em;
+  }
+}
