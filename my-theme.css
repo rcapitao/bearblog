@@ -4,47 +4,42 @@
 * Robert Birming | robertbirming.com
 */
 
-/* Palette: Amber */
+/* Palette: Flexoki */
 @import url('https://fonts.bunny.net/css?family=bricolage-grotesque:600,700,800|dm-sans:400,400i,500&display=swap');
-
 :root {
   color-scheme: light dark;
-
   /* Layout */
   --page-width: 65ch;
   --line-height: 1.65;
   --space-block: 1.8rem;
-  --radius: 5px;
-
+  --radius: 4px;
   /* Typography */
-  --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
   --font-size: 1.0625rem;
   --font-small: calc(var(--font-size) * 0.875);
-
-  /* Light */
-  --bg: #f5f1eb;
-  --text: #2a1e0e;
-  --link: #a0651a;
-  --visited: #7a5540;
-  --accent: var(--link);
-  --muted: color-mix(in srgb, var(--accent) 15%, color-mix(in srgb, var(--text) 65%, var(--bg)));
-  --surface: color-mix(in srgb, var(--accent) 7%, var(--bg));
-  --border: color-mix(in srgb, var(--accent) 20%, var(--bg));
+  /* Light — Flexoki */
+  --bg: #fffcf0;          /* paper */
+  --text: #100f0f;        /* black */
+  --link: #24837B;        /* cyan-600 */
+  --visited: #878580;     /* base-300 */
+  --accent: #205EA6;      /* red-600 */
+  --muted: #6f6e69;       /* tx-2 */
+  --surface: #f2f0e5;     /* base-50 */
+  --border: #e6e4d9;      /* base-100 */
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
-
-    /* Dark */
-    --bg: #1c1710;
-    --text: #d2cdbf;
-    --link: #e8a83c;
-    --visited: #c49070;
-    --surface: color-mix(in srgb, var(--accent) 13%, var(--bg));
-    --border: color-mix(in srgb, var(--accent) 30%, var(--bg));
-    --muted: color-mix(in srgb, var(--accent) 10%, color-mix(in srgb, var(--text) 80%, var(--bg)));
+    /* Dark — Flexoki */
+    --bg: #100f0f;        /* black */
+    --text: #cecdc3;      /* tx */
+    --link: #3AA99F;      /* cyan-400 */
+    --visited: #878580;   /* base-700 */
+    --accent: #4385BE;    /* red-400 */
+    --muted: #878580;     /* tx-2 */
+    --surface: #1c1b1a;   /* base-950 */
+    --border: #282726;    /* base-900 */
   }
 }
 
@@ -86,9 +81,9 @@ h1, h2, h3, h4 {
   font-family: var(--font-heading);
 }
 
-h1 { font-size: 1.7rem; }
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.3rem; }
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.2rem; }
 h4 { font-size: 1.1rem; }
 
 a {
